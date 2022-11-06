@@ -1,0 +1,929 @@
+ubuntu@ip-172-31-84-166:~$ sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+Reading package lists... Done  
+Building dependency tree... Done
+Reading state information... Done
+ca-certificates is already the newest version (20211016). 
+dirmngr set to manually installed.
+The following packages were automatically installed and are no longer required:
+  libflashrom1 libftdi1-2
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  apt-transport-https
+0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+Need to get 1506 B of archives.
+After this operation, 169 kB of additional disk space will be used.
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 apt-transport-https all 2.4.8 [1506 B]
+Fetched 1506 B in 0s (89.1 kB/s)        
+Selecting previously unselected package apt-transport-https.
+(Reading database ... 92627 files and directories currently installed.)
+Preparing to unpack .../apt-transport-https_2.4.8_all.deb ...
+Unpacking apt-transport-https (2.4.8) ...
+Setting up apt-transport-https (2.4.8) ...
+Scanning processes...
+Scanning candidates...
+ubuntu@ip-172-31-84-166:~$ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+
+================================================================================
+================================================================================
+
+                              DEPRECATION WARNING                               
+
+  Node.js 12.x is no longer actively supported!
+
+  You will not receive security or critical stability updates for this version.    
+
+  You should migrate to a supported version of Node.js as soon as possible.        
+  Use the installation script that corresponds to the version of Node.js you       
+  wish to install. e.g.
+
+   * https://deb.nodesource.com/setup_14.x — Node.js 14 LTS "Fermium" (recommended)
+   * https://deb.nodesource.com/setup_16.x — Node.js 16 "Gallium"
+   * https://deb.nodesource.com/setup_18.x — Node.js 18 "Eighteen" (current)       
+
+  Please see https://github.com/nodejs/Release for details about which
+  version may be appropriate for you.
+
+  The NodeSource Node.js distributions repository contains
+  information both about supported versions of Node.js and supported Linux
+  distributions. To learn more about usage, see the repository:
+    https://github.com/nodesource/distributions
+
+================================================================================        
+================================================================================        
+
+Continuing in 20 seconds ...
+
+
+## Installing the NodeSource Node.js 12.x repo...
+
+
+ubuntu@ip-172-31-84-166:~$ sudo apt install -y nodejs
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libflashrom1 libftdi1-2
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  javascript-common libc-ares2 libjs-highlight.js libnode72 nodejs-doc
+Suggested packages:
+  apache2 | lighttpd | httpd npm
+Preparing to unpack .../3-libnode72_12.22.9~dfsg-1ubuntu3_amd64.deb ...
+Unpacking libnode72:amd64 (12.22.9~dfsg-1ubuntu3) ...
+Selecting previously unselected package nodejs-doc.
+Preparing to unpack .../4-nodejs-doc_12.22.9~dfsg-1ubuntu3_all.deb ...
+Unpacking nodejs-doc (12.22.9~dfsg-1ubuntu3) ...
+Selecting previously unselected package nodejs.
+Preparing to unpack .../5-nodejs_12.22.9~dfsg-1ubuntu3_amd64.deb ...
+Unpacking nodejs (12.22.9~dfsg-1ubuntu3) ...
+Setting up javascript-common (11+nmu1) ...
+Setting up libc-ares2:amd64 (1.18.1-1build1) ...
+Setting up libnode72:amd64 (12.22.9~dfsg-1ubuntu3) ...
+Setting up libjs-highlight.js (9.18.5+dfsg1-1) ...
+Setting up nodejs (12.22.9~dfsg-1ubuntu3) ...
+update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode     
+Setting up nodejs-doc (12.22.9~dfsg-1ubuntu3) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+Scanning processes...
+Scanning candidates...
+Scanning linux images...
+
+Restarting services...
+Service restarts being deferred:
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+Service restarts being deferred:
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+ systemctl restart user@1000.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+ubuntu@ip-172-31-84-166:~$ Connection to ec2-52-91-25-191.compute-1.amazonaws.com closed by remote host.
+Connection to ec2-52-91-25-191.compute-1.amazonaws.com closed.
+PS C:\Users\Dell\Downloads> ssh -i "obi3-ec2.pem" ubuntu@ec2-52-91-25-191.compute-1.amazonaws.com
+ubuntu@ip-172-31-84-166:~$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+Executing: /tmp/apt-key-gpghome.uJZjZZgpnf/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+gpg: key BC711F9BA15703C6: public key "MongoDB 3.4 Release Signing Key <packaging@mongodb.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+ubuntu@ip-172-31-84-166:~$ echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu 
+trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverseubuntu@ip-172-31-84-166:~$ sudo apt install -y mongodb
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package mongodb is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or       
+is only available from another source
+
+E: Package 'mongodb' has no installation candidate
+ubuntu@ip-172-31-84-166:~$ sudo service mongodb start
+Failed to start mongodb.service: Unit mongodb.service not found.
+ubuntu@ip-172-31-84-166:~$ wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc 
+| sudo apt-key add -
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
+ubuntu@ip-172-31-84-166:~$ sudo apt-get install gnupg
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+gnupg is already the newest version (2.2.27-3ubuntu2.1).
+gnupg set to manually installed.
+The following packages were automatically installed and are no longer required:
+  libflashrom1 libftdi1-2
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+ubuntu@ip-172-31-84-166:~$ wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc 
+| sudo apt-key add -
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
+ubuntu@ip-172-31-84-166:~$ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse
+ubuntu@ip-172-31-84-166:~$ sudo apt-get update
+Hit:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy InRelease
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-updates InRelease [114 kB]   
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu jammy-backports InRelease [99.8 kB]Get:4 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Ign:5 https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 InRelease
+Ign:6 https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 InRelease
+Get:7 https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 Release [2495 B]       
+Get:8 https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 Release [5377 B]        
+Get:9 https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 Release.gpg [801 B]
+Get:10 https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 Release.gpg [801 B]    
+Get:11 https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4/multiverse amd64 Packages [15.3 kB]
+Get:12 https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4/multiverse amd64 Packages [29.5 kB]
+Get:13 https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4/multiverse arm64 Packages [22.5 kB]
+Fetched 401 kB in 1s (620 kB/s)
+Reading package lists... Done
+W: https://repo.mongodb.org/apt/ubuntu/dists/trusty/mongodb-org/3.4/Release.gpg: Key is 
+stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+W: https://repo.mongodb.org/apt/ubuntu/dists/focal/mongodb-org/4.4/Release.gpg: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section 
+in apt-key(8) for details.
+ubuntu@ip-172-31-84-166:~$ sudo apt-get install -y mongodb-org
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.0) but it is not installable
+ mongodb-org-server : Depends: libssl1.1 (>= 1.1.0) but it is not installable
+ mongodb-org-shell : Depends: libssl1.1 (>= 1.1.0) but it is not installable
+E: Unable to correct problems, you have held broken packages.
+ubuntu@ip-172-31-84-166:~$ echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-org-shell hold" | sudo dpkg --set-selectidpkg: warning: package not in status nor available database at line 1: mongodb-org
+ons
+echo "mongodb-org-mongos hold" | suddpkg: warning: found unknown packages; this might mean the available database
+is outdated, and needs to be updated through a frontend method;
+please see the FAQ <https://wiki.debian.org/Teams/Dpkg/FAQ>
+ubuntu@ip-172-31-84-166:~$ echo "mongodb-org-server hold" | sudo dpkg --set-selections  
+echo "mongodb-org-tools holddpkg: warning: package not in status nor available database at line 1: mongodb-org-server
+dpkg: warning: found unknown packages; this might mean the available database
+please see the FAQ <https://wiki.debian.org/Teams/Dpkg/FAQ>
+ubuntu@ip-172-31-84-166:~$ echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+dpkg: warning: found unknown packages; this might mean the available database
+is outdated, and needs to be updated through a frontend method;
+please see the FAQ <https://wiki.debian.org/Teams/Dpkg/FAQ>
+ubuntu@ip-172-31-84-166:~$ echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+dpkg: warning: package not in status nor available database at line 1: mongodb-org-mongos        
+dpkg: warning: found unknown packages; this might mean the available database
+is outdated, and needs to be updated through a frontend method;
+please see the FAQ <https://wiki.debian.org/Teams/Dpkg/FAQ>
+ubuntu@ip-172-31-84-166:~$ client_loop: send disconnect: Connection reset
+PS C:\Users\Dell\Downloads> ssh -i "obi3-ec2.pem" ubuntu@ec2-52-91-25-191.compute-1.amazonaws.comssh -i "obi3-ec2.pem" ubuntu@ec2-52-91-25-191.compute-1.amazonaws.com
+ssh: Could not resolve hostname ec2-52-91-25-191.compute-1.amazonaws.comssh: No such host is known.
+PS C:\Users\Dell\Downloads> ssh -i "obi3-ec2.pem" ubuntu@ec2-52-91-25-191.compute-1.amazonaws.comssh -i "obi3-ec2.pem" ubuntu@ec2-52-91-25-191.compute-1.amazonaws.com
+ssh: Could not resolve hostname ec2-52-91-25-191.compute-1.amazonaws.comssh: No such host is known.
+PS C:\Users\Dell\Downloads> ssh -i "obi-ec2.pem" ubuntu@ec2-18-206-162-45.compute-1.amazonaws.com
+
+The authenticity of host 'ec2-18-206-162-45.compute-1.amazonaws.com (18.206.162.45)' can't be established.
+ECDSA key fingerprint is SHA256:5rKmgU8Mrlz2H5HwC1C8BC5uWXY9n34FJ+qe5iwHtbA.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-18-206-162-45.compute-1.amazonaws.com,18.206.162.45' (ECDSA) to the list of known hosts.
+ubuntu@ip-172-31-93-111:~$ sudo apt update
+Hit:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal InRelease
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]
+Hit:4 https://deb.nodesource.com/node_18.x focal InRelease
+Get:5 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [2196 kB]
+Get:7 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [16.0 kB]
+Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [972 kB]
+Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata 
+[21.8 kB]
+Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [24.0 kB]
+Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [864 B]
+Get:12 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1821 kB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [11.2 kB]
+Get:14 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [743 kB]   
+Get:15 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [15.3 kB]
+Fetched 6158 kB in 2s (3191 kB/s) 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+11 packages can be upgraded. Run 'apt list --upgradable' to see them.
+ubuntu@ip-172-31-93-111:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+Try Ubuntu Pro beta with a free personal subscription on up to 5 machines.
+Learn more at https://ubuntu.com/pro
+The following NEW packages will be installed:
+  libxmlb2
+The following packages will be upgraded:
+  distro-info-data fwupd grub-efi-amd64-bin grub-efi-amd64-signed libfwupd2 libfwupdplugin5      
+  libntfs-3g883 nodejs ntfs-3g snapd tzdata
+11 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+3 standard LTS security updates
+Need to get 71.0 MB of archives.
+After this operation, 19.5 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 ntfs-3g amd64 1:2017.3.23AR.3-3ubuntu1.3 [388 kB]
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 libntfs-3g883 amd64 1:2017.3.23AR.3-3ubuntu1.3 [150 kB]
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 distro-info-data all 0.43ubuntu1.11 [4672 B]
+Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 tzdata all 2022f-0ubuntu0.20.04.0 [286 kB]
+Installing new version of config file /etc/fwupd/redfish.conf ...
+fwupd-offline-update.service is a disabled or a static unit not running, not starting it.        
+fwupd-refresh.service is a disabled or a static unit not running, not starting it.
+fwupd.service is a disabled or a static unit not running, not starting it.
+Setting up grub-efi-amd64-signed (1.173.2~20.04.1+2.04-1ubuntu47.4) ...
+Trying to migrate /boot/efi into esp config
+Unknown device "/dev/disk/by-id/*": No such file or directory
+Installing grub to /boot/efi.
+Installing for x86_64-efi platform.
+grub-install: warning: EFI variables are not supported on this system..
+Installation finished. No error reported.
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for dbus (1.12.16-2ubuntu2.3) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for initramfs-tools (0.136ubuntu6.7) ...
+update-initramfs: Generating /boot/initrd.img-5.15.0-1022-aws
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+ubuntu@ip-172-31-93-111:~$ sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+Reading package lists... Donetup_12.x | sudo -E bash -
+curl is already the newest version (7.68.0-1ubuntu2.14).
+curl set to manually installed.
+dirmngr is already the newest version (2.2.19-3ubuntu2.2).
+dirmngr set to manually installed.
+The following NEW packages will be installed:
+  apt-transport-https
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 1704 B of archives.
+After this operation, 162 kB of additional disk space will be used.
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.9 [1704 B]
+Fetched 1704 B in 0s (82.1 kB/s)        
+Selecting previously unselected package apt-transport-https.
+(Reading database ... 125857 files and directories currently installed.)
+Preparing to unpack .../apt-transport-https_2.0.9_all.deb ...
+Unpacking apt-transport-https (2.0.9) ...
+Setting up apt-transport-https (2.0.9) ...
+ubuntu@ip-172-31-93-111:~$ sudo apt install -y nodejs
+Reading package lists... Done  
+Building dependency tree       
+Reading state information... Done
+nodejs is already the newest version (18.12.0-deb-1nodesource1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+ubuntu@ip-172-31-93-111:~$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+Executing: /tmp/apt-key-gpghome.O7d8vuEnfx/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+gpg: key BC711F9BA15703C6: public key "MongoDB 3.4 Release Signing Key <packaging@mongodb.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+ubuntu@ip-172-31-93-111:~$ echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse
+ubuntu@ip-172-31-93-111:~$ sudo apt install -y mongodb
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libboost-filesystem1.71.0 libboost-iostreams1.71.0 libboost-program-options1.71.0
+  libgoogle-perftools4 libpcrecpp0v5 libsnappy1v5 libtcmalloc-minimal4 libyaml-cpp0.6
+  mongo-tools mongodb-clients mongodb-server mongodb-server-core
+The following NEW packages will be installed:
+  libboost-filesystem1.71.0 libboost-iostreams1.71.0 libboost-program-options1.71.0
+  libgoogle-perftools4 libpcrecpp0v5 libsnappy1v5 libtcmalloc-minimal4 libyaml-cpp0.6
+  mongo-tools mongodb mongodb-clients mongodb-server mongodb-server-core
+0 upgraded, 13 newly installed, 0 to remove and 0 not upgraded.
+Need to get 56.8 MB of archives.
+After this operation, 234 MB of additional disk space will be used.
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 libboost-filesystem1.71.0 amd64 1.71.0-6ubuntu6 [242 kB]
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 libboost-iostreams1.71.0 amd64 1.71.0-6ubuntu6 [237 kB]
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 libboost-program-options1.71.0 amd64 1.71.0-6ubuntu6 [342 kB]
+Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 libtcmalloc-minimal4 amd64 
+2.7-1ubuntu2 [93.0 kB]
+Get:5 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 libgoogle-perftools4 amd64 
+Setting up libtcmalloc-minimal4:amd64 (2.7-1ubuntu2) ...
+Setting up libboost-filesystem1.71.0:amd64 (1.71.0-6ubuntu6) ...
+Setting up libboost-iostreams1.71.0:amd64 (1.71.0-6ubuntu6) ...
+Setting up libsnappy1v5:amd64 (1.1.8-1build1) ...
+Setting up libyaml-cpp0.6:amd64 (0.6.2-4ubuntu1) ...
+Setting up mongo-tools (3.6.3-0ubuntu1) ...
+Setting up libgoogle-perftools4:amd64 (2.7-1ubuntu2) ...
+Setting up libboost-program-options1.71.0:amd64 (1.71.0-6ubuntu6) ...
+Setting up mongodb-clients (1:3.6.9+really3.6.8+90~g8e540c0b6d-0ubuntu5.3) ...
+Setting up mongodb-server-core (1:3.6.9+really3.6.8+90~g8e540c0b6d-0ubuntu5.3) ...
+Setting up mongodb-server (1:3.6.9+really3.6.8+90~g8e540c0b6d-0ubuntu5.3) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/mongodb.service → /lib/systemd/system/mongodb.service.
+Setting up mongodb (1:3.6.9+really3.6.8+90~g8e540c0b6d-0ubuntu5.3) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+Processing triggers for systemd (245.4-4ubuntu3.18) ...
+ubuntu@ip-172-31-93-111:~$ sudo service mongodb start
+ubuntu@ip-172-31-93-111:~$ sudo systemctl status mongodb
+● mongodb.service - An object/document-oriented database
+     Loaded: loaded (/lib/systemd/system/mongodb.service; enabled; vendor preset: enabled)       
+     Active: active (running) since Sun 2022-11-06 20:56:10 UTC; 2min 25s ago
+       Docs: man:mongod(1)
+   Main PID: 8220 (mongod)
+      Tasks: 23 (limit: 1143)
+     Memory: 45.0M
+     CGroup: /system.slice/mongodb.service
+             └─8220 /usr/bin/mongod --unixSocketPrefix=/run/mongodb --config /etc/mongodb.conf   
+
+Nov 06 20:56:10 ip-172-31-93-111 systemd[1]: Started An object/document-oriented database.       
+ubuntu@ip-172-31-93-111:~$ sudo apt install -y npm
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ npm : Depends: nodejs (>= 6.11~)
+       Depends: node-abbrev (>= 1.1.1~) but it is not going to be installed
+       Depends: node-ajv but it is not going to be installed
+       Depends: node-ansi but it is not going to be installed
+       Depends: node-ansi-regex (>= 3.0~) but it is not going to be installed
+       Depends: node-ansi-styles but it is not going to be installed
+       Depends: node-ansistyles but it is not going to be installed
+       Depends: node-aproba but it is not going to be installed
+       Depends: node-archy (>= 1.0~) but it is not going to be installed
+       Depends: node-are-we-there-yet but it is not going to be installed
+       Depends: node-asap but it is not going to be installed
+       Depends: node-asn1 but it is not going to be installed
+       Depends: node-assert-plus but it is not going to be installed
+       Depends: node-asynckit but it is not going to be installed
+       Depends: node-aws4 but it is not going to be installed
+       Depends: node-aws-sign2 but it is not going to be installed
+       Depends: node-balanced-match but it is not going to be installed
+       Depends: node-bcrypt-pbkdf but it is not going to be installed
+       Depends: node-bl but it is not going to be installed
+       Depends: node-bluebird but it is not going to be installed
+       Depends: node-boxen but it is not going to be installed
+       Depends: node-brace-expansion but it is not going to be installed
+       Depends: node-builtin-modules but it is not going to be installed
+       Depends: node-builtins but it is not going to be installed
+       Depends: node-cacache but it is not going to be installed
+       Depends: node-call-limit but it is not going to be installed
+       Depends: node-camelcase but it is not going to be installed
+       Depends: node-caseless but it is not going to be installed
+       Depends: node-chalk but it is not going to be installed
+       Depends: node-chownr but it is not going to be installed
+       Depends: node-ci-info but it is not going to be installed
+       Depends: node-cli-boxes but it is not going to be installed
+       Depends: node-cliui but it is not going to be installed
+       Depends: node-clone but it is not going to be installed
+       Depends: node-co but it is not going to be installed
+       Depends: node-color-convert but it is not going to be installed
+       Depends: node-color-name but it is not going to be installed
+       Depends: node-colors but it is not going to be installed
+       Depends: node-columnify but it is not going to be installed
+       Depends: node-combined-stream but it is not going to be installed
+       Depends: node-concat-map but it is not going to be installed
+       Depends: node-concat-stream but it is not going to be installed
+       Depends: node-config-chain but it is not going to be installed
+       Depends: node-configstore but it is not going to be installed
+       Depends: node-console-control-strings but it is not going to be installed
+       Depends: node-copy-concurrently but it is not going to be installed
+       Depends: node-core-util-is but it is not going to be installed
+       Depends: node-cross-spawn but it is not going to be installed
+       Depends: node-crypto-random-string but it is not going to be installed
+       Depends: node-cyclist but it is not going to be installed
+       Depends: node-dashdash but it is not going to be installed
+       Depends: node-debug but it is not going to be installed
+       Depends: node-decamelize but it is not going to be installed
+       Depends: node-deep-extend but it is not going to be installed
+       Depends: node-defaults but it is not going to be installed
+       Depends: node-define-properties but it is not going to be installed
+       Depends: node-delayed-stream but it is not going to be installed
+       Depends: node-delegates but it is not going to be installed
+       Depends: node-detect-indent but it is not going to be installed
+       Depends: node-detect-newline but it is not going to be installed
+       Depends: node-dot-prop but it is not going to be installed
+       Depends: node-duplexer3 but it is not going to be installed
+       Depends: node-duplexify but it is not going to be installed
+       Depends: node-ecc-jsbn but it is not going to be installed
+       Depends: node-editor but it is not going to be installed
+       Depends: node-encoding but it is not going to be installed
+       Depends: node-end-of-stream but it is not going to be installed
+       Depends: node-err-code but it is not going to be installed
+       Depends: node-errno but it is not going to be installed
+       Depends: node-es6-promise but it is not going to be installed
+       Depends: node-escape-string-regexp but it is not going to be installed
+       Depends: node-execa but it is not going to be installed
+       Depends: node-extend but it is not going to be installed
+       Depends: node-extsprintf but it is not going to be installed
+       Depends: node-fast-deep-equal but it is not going to be installed
+       Depends: node-find-up but it is not going to be installed
+       Depends: node-flush-write-stream but it is not going to be installed
+       Depends: node-forever-agent but it is not going to be installed
+       Depends: node-form-data but it is not going to be installed
+       Depends: node-from2 but it is not going to be installed
+       Depends: node-fs.realpath but it is not going to be installed
+       Depends: node-fs-vacuum but it is not going to be installed
+       Depends: node-fs-write-stream-atomic but it is not going to be installed
+       Depends: node-function-bind but it is not going to be installed
+       Depends: node-gauge but it is not going to be installed
+       Depends: node-genfun but it is not going to be installed
+       Depends: node-get-caller-file but it is not going to be installed
+       Depends: node-getpass but it is not going to be installed
+       Depends: node-glob (>= 7.1.2~) but it is not going to be installed
+       Depends: node-got but it is not going to be installed
+       Depends: node-graceful-fs (>= 4.1.11~) but it is not going to be installed
+       Depends: node-gyp (>= 3.6.2~) but it is not going to be installed
+       Depends: node-har-schema but it is not going to be installed
+       Depends: node-har-validator but it is not going to be installed
+       Depends: node-has-flag but it is not going to be installed
+       Depends: node-has-unicode but it is not going to be installed
+       Depends: node-hosted-git-info (>= 2.6~) but it is not going to be installed
+       Depends: node-http-signature but it is not going to be installed
+       Depends: node-iconv-lite but it is not going to be installed
+       Depends: node-iferr but it is not going to be installed
+       Depends: node-import-lazy but it is not going to be installed
+       Depends: node-imurmurhash but it is not going to be installed
+       Depends: node-inflight but it is not going to be installed
+       Depends: node-inherits (>= 2.0.3~) but it is not going to be installed
+       Depends: node-ini (>= 1.3.5~) but it is not going to be installed
+       Depends: node-invert-kv but it is not going to be installed
+       Depends: node-ip but it is not going to be installed
+       Depends: node-ip-regex but it is not going to be installed
+       Depends: node-isarray but it is not going to be installed
+       Depends: node-isexe but it is not going to be installed
+       Depends: node-is-npm but it is not going to be installed
+       Depends: node-is-obj but it is not going to be installed
+       Depends: node-is-path-inside but it is not going to be installed
+       Depends: node-is-retry-allowed but it is not going to be installed
+       Depends: node-is-stream but it is not going to be installed
+       Depends: node-isstream but it is not going to be installed
+       Depends: node-is-typedarray but it is not going to be installed
+       Depends: node-jsbn but it is not going to be installed
+       Depends: node-jsonparse but it is not going to be installed
+       Depends: node-json-parse-better-errors but it is not going to be installed
+       Depends: node-json-schema but it is not going to be installed
+       Depends: node-json-schema-traverse but it is not going to be installed
+       Depends: node-jsonstream (>= 1.3.2~) but it is not going to be installed
+       Depends: node-json-stringify-safe but it is not going to be installed
+       Depends: node-jsprim but it is not going to be installed
+       Depends: node-latest-version but it is not going to be installed
+       Depends: node-lazy-property but it is not going to be installed
+       Depends: node-lcid but it is not going to be installed
+       Depends: node-libnpx but it is not going to be installed
+       Depends: node-locate-path but it is not going to be installed
+       Depends: node-lodash but it is not going to be installed
+       Depends: node-lockfile (>= 1.0.3~) but it is not going to be installed
+       Depends: node-lowercase-keys but it is not going to be installed
+       Depends: node-lru-cache (>= 4.1.1~) but it is not going to be installed
+       Depends: node-make-dir but it is not going to be installed
+       Depends: node-mem but it is not going to be installed
+       Depends: node-mime but it is not going to be installed
+       Depends: node-mime-types but it is not going to be installed
+       Depends: node-mimic-fn but it is not going to be installed
+       Depends: node-minimatch but it is not going to be installed
+       Depends: node-minimist but it is not going to be installed
+       Depends: node-mississippi but it is not going to be installed
+       Depends: node-mkdirp (>= 0.5.1~) but it is not going to be installed
+       Depends: node-move-concurrently but it is not going to be installed
+       Depends: node-ms but it is not going to be installed
+       Depends: node-mute-stream but it is not going to be installed
+       Depends: node-nopt but it is not going to be installed
+       Depends: node-normalize-package-data (>= 2.4~) but it is not going to be installed        
+       Depends: node-npm-bundled but it is not going to be installed
+       Depends: node-npm-package-arg (>= 6.1.1) but it is not going to be installed
+       Depends: node-npmlog (>= 4.1.2~) but it is not going to be installed
+       Depends: node-number-is-nan but it is not going to be installed
+       Depends: node-oauth-sign but it is not going to be installed
+       Depends: node-object-assign but it is not going to be installed
+       Depends: node-once (>= 1.4~) but it is not going to be installed
+       Depends: node-opener but it is not going to be installed
+       Depends: node-osenv (>= 0.1.5~) but it is not going to be installed
+       Depends: node-os-locale but it is not going to be installed
+       Depends: node-os-tmpdir but it is not going to be installed
+       Depends: node-package-json but it is not going to be installed
+       Depends: node-parallel-transform but it is not going to be installed
+       Depends: node-path-exists but it is not going to be installed
+       Depends: node-path-is-absolute but it is not going to be installed
+       Depends: node-path-is-inside but it is not going to be installed
+       Depends: node-promise-inflight but it is not going to be installed
+       Depends: node-promise-retry but it is not going to be installed
+       Depends: node-promzard but it is not going to be installed
+       Depends: node-performance-now but it is not going to be installed
+       Depends: node-p-finally but it is not going to be installed
+       Depends: node-p-is-promise but it is not going to be installed
+       Depends: node-pify but it is not going to be installed
+       Depends: node-p-limit but it is not going to be installed
+       Depends: node-p-locate but it is not going to be installed
+       Depends: node-prepend-http but it is not going to be installed
+       Depends: node-process-nextick-args but it is not going to be installed
+       Depends: node-proto-list but it is not going to be installed
+       Depends: node-prr but it is not going to be installed
+       Depends: node-pseudomap but it is not going to be installed
+       Depends: node-psl but it is not going to be installed
+       Depends: node-pump but it is not going to be installed
+       Depends: node-pumpify but it is not going to be installed
+       Depends: node-punycode but it is not going to be installed
+       Depends: node-qs but it is not going to be installed
+       Depends: node-qw but it is not going to be installed
+       Depends: node-rc but it is not going to be installed
+       Depends: node-read (>= 1.0.7~) but it is not going to be installed
+       Depends: node-readable-stream but it is not going to be installed
+       Depends: node-read-package-json (>= 2.0.13~) but it is not going to be installed
+       Depends: node-registry-auth-token but it is not going to be installed
+       Depends: node-registry-url but it is not going to be installed
+       Depends: node-request (>= 2.83~) but it is not going to be installed
+       Depends: node-require-main-filename but it is not going to be installed
+       Depends: node-require-directory but it is not going to be installed
+       Depends: node-resolve-from (>= 4.0~) but it is not going to be installed
+       Depends: node-retry (>= 0.10.1~) but it is not going to be installed
+       Depends: node-rimraf (>= 2.6.2~) but it is not going to be installed
+       Depends: node-run-queue but it is not going to be installed
+       Depends: node-safe-buffer but it is not going to be installed
+       Depends: node-semver (>= 5.5~) but it is not going to be installed
+       Depends: node-set-blocking but it is not going to be installed
+       Depends: node-sha (>= 2.0.1~) but it is not going to be installed
+       Depends: node-shebang-command but it is not going to be installed
+       Depends: node-shebang-regex but it is not going to be installed
+       Depends: node-signal-exit but it is not going to be installed
+       Depends: node-slide (>= 1.1.6~) but it is not going to be installed
+       Depends: node-sorted-object but it is not going to be installed
+       Depends: node-slash but it is not going to be installed
+       Depends: node-semver-diff but it is not going to be installed
+       Depends: node-spdx-correct but it is not going to be installed
+       Depends: node-spdx-exceptions but it is not going to be installed
+       Depends: node-spdx-expression-parse but it is not going to be installed
+       Depends: node-spdx-license-ids but it is not going to be installed
+       Depends: node-sshpk but it is not going to be installed
+       Depends: node-ssri but it is not going to be installed
+       Depends: node-stream-each but it is not going to be installed
+       Depends: node-stream-iterate but it is not going to be installed
+       Depends: node-stream-shift but it is not going to be installed
+       Depends: node-strict-uri-encode but it is not going to be installed
+       Depends: node-string-decoder but it is not going to be installed
+       Depends: node-string-width but it is not going to be installed
+       Depends: node-strip-ansi (>= 4.0~) but it is not going to be installed
+       Depends: node-strip-json-comments but it is not going to be installed
+       Depends: node-strip-eof but it is not going to be installed
+       Depends: node-supports-color but it is not going to be installed
+       Depends: node-tar (>= 4.4~) but it is not going to be installed
+       Depends: node-term-size but it is not going to be installed
+       Depends: node-text-table but it is not going to be installed
+       Depends: node-through but it is not going to be installed
+       Depends: node-through2 but it is not going to be installed
+       Depends: node-timed-out but it is not going to be installed
+       Depends: node-tough-cookie but it is not going to be installed
+       Depends: node-tunnel-agent but it is not going to be installed
+       Depends: node-tweetnacl but it is not going to be installed
+       Depends: node-typedarray but it is not going to be installed
+       Depends: node-uid-number but it is not going to be installed
+       Depends: node-unique-filename but it is not going to be installed
+       Depends: node-unique-string but it is not going to be installed
+       Depends: node-unpipe but it is not going to be installed
+       Depends: node-url-parse-lax but it is not going to be installed
+       Depends: node-util-deprecate but it is not going to be installed
+       Depends: node-uuid but it is not going to be installed
+       Depends: node-validate-npm-package-name but it is not going to be installed
+       Depends: node-verror but it is not going to be installed
+       Depends: node-which (>= 1.3~) but it is not going to be installed
+       Depends: node-which-module but it is not going to be installed
+       Depends: node-wide-align but it is not going to be installed
+       Depends: node-widest-line but it is not going to be installed
+       Depends: node-wrap-ansi but it is not going to be installed
+       Depends: node-wrappy but it is not going to be installed
+       Depends: node-wcwidth.js but it is not going to be installed
+       Depends: node-write-file-atomic but it is not going to be installed
+       Depends: node-xdg-basedir but it is not going to be installed
+       Depends: node-xtend but it is not going to be installed
+       Depends: node-yargs but it is not going to be installed
+       Depends: node-yargs-parser but it is not going to be installed
+       Depends: node-yallist but it is not going to be installed
+       Depends: node-y18n but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
+ubuntu@ip-172-31-93-111:~$ sudo npm install body-parser
+
+added 30 packages, and audited 31 packages in 2s
+
+6 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm notice
+npm notice New patch version of npm available! 8.19.2 -> 8.19.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v8.19.3
+npm notice Run npm install -g npm@8.19.3 to update!
+npm notice
+ubuntu@ip-172-31-93-111:~$ mkdir Books && cd Books
+ubuntu@ip-172-31-93-111:~/Books$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (books) vi server.js
+Sorry, name can only contain URL-friendly characters.
+package name: (books) npm WARN init canceled
+npm notice
+npm notice New patch version of npm available! 8.19.2 -> 8.19.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v8.19.3
+npm notice Run npm install -g npm@8.19.3 to update!
+npm notice
+ubuntu@ip-172-31-93-111:~/Books$ vi server.js
+ubuntu@ip-172-31-93-111:~/Books$ cd ..
+ubuntu@ip-172-31-93-111:~$ sudo npm install express mongoose
+
+added 129 packages, and audited 160 packages in 9s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+ubuntu@ip-172-31-93-111:~$ cd Books
+ubuntu@ip-172-31-93-111:~/Books$ mkdir apps && cd apps
+ubuntu@ip-172-31-93-111:~/Books/apps$ vi routes.js
+ubuntu@ip-172-31-93-111:~/Books/apps$ mkdir models && cd models
+ubuntu@ip-172-31-93-111:~/Books/apps/models$ vi book.js
+ubuntu@ip-172-31-93-111:~/Books/apps/models$ cd../..
+-bash: cd../..: No such file or directory
+ubuntu@ip-172-31-93-111:~/Books/apps/models$ cd ..
+ubuntu@ip-172-31-93-111:~/Books/apps$ cd ..
+ubuntu@ip-172-31-93-111:~/Books$ mkdir public && cd public
+ubuntu@ip-172-31-93-111:~/Books/public$ vi script.js
+ubuntu@ip-172-31-93-111:~/Books/public$ vi index.html
+ubuntu@ip-172-31-93-111:~/Books/public$ cd ..
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ubuntu/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ubuntu/Books/server.js:17:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ubuntu/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ubuntu/Books/server.js:17:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ubuntu/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ubuntu/Books/server.js:17:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ cd ..
+ubuntu@ip-172-31-93-111:~$ killall -9 node
+node: no process found
+ubuntu@ip-172-31-93-111:~$ lsof -PiTCP -sTCP:LISTEN
+ubuntu@ip-172-31-93-111:~$ cd Books
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ client_loop: send disconnect: Connection reset
+PS C:\Users\Dell\Downloads> ssh -i "obi-ec2.pem" ubuntu@ec2-18-206-162-45.compute-1.amazonaws.com
+
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.15.0-1022-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun Nov  6 21:31:48 UTC 2022
+
+  System load:  0.18              Processes:             115
+  Usage of /:   54.8% of 7.57GB   Users logged in:       0
+  Memory usage: 60%               IPv4 address for eth0: 172.31.93.111
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+0 updates can be applied immediately.
+
+New release '22.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Sun Nov  6 21:31:03 2022 from 18.206.107.28
+ubuntu@ip-172-31-93-111:~$ cd Books
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ubuntu/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ubuntu/Books/server.js:17:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ cd ..
+ubuntu@ip-172-31-93-111:~$ lsof -i tcp:3300
+ubuntu@ip-172-31-93-111:~$ kill -9 PID
+-bash: kill: PID: arguments must be process or job IDs
+ubuntu@ip-172-31-93-111:~$ cd Books
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ubuntu/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ubuntu/Books/server.js:17:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3300
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Function.listen (/home/ubuntu/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/ubuntu/Books/server.js:17:5)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)        
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1512:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3300
+}
+
+Node.js v18.12.0
+ubuntu@ip-172-31-93-111:~/Books$ ls
+apps  public  server.js
+ubuntu@ip-172-31-93-111:~/Books$ vi server.js
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+Mongoose: books.createIndex({ isbn: 1 }, { background: true })
+
+exit
+c^
+^C
+ubuntu@ip-172-31-93-111:~/Books$ cd ..
+ubuntu@ip-172-31-93-111:~$ curl -s http://localhost:3300
+ubuntu@ip-172-31-93-111:~$ cd Books
+ubuntu@ip-172-31-93-111:~/Books$ node server.js
+Server up: http://localhost:3300
+Mongoose: books.createIndex({ isbn: 1 }, { background: true })
